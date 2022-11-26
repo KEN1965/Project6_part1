@@ -15,13 +15,25 @@ struct ContentView: View {
     var body: some View {
         //ボタンを押したらスケールが大きくなるボタンを作っていきます
         Button("Tap me") {
-            animationAmount += 1
+//            animationAmount += 1
         }
         .padding(20)
         .background(.red)
         .foregroundColor(.white)
         .clipShape(Circle())
-        .scaleEffect(animationAmount)
+        .overlay(
+            Circle()
+                .stroke(.red)
+                .scaleEffect(animationAmount)
+                .opacity(2 - animationAmount)
+                .animation(
+                    .easeInOut(duration: 2)
+                    .repeatForever(autoreverses: false),
+                    value: animationAmount)
+        )
+        .onAppear {
+            animationAmount = 2
+        }
     }
 }
 
