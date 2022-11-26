@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    //アニメーションをやっていきます
+    //スケールを格納するプロパティを作成
+    @State private var animationAmount = 1.0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        //ボタンを押したらスケールが大きくなるボタンを作っていきます
+        Button("Tap me") {
+            animationAmount += 1
         }
-        .padding()
+        .padding(20)
+        .background(.red)
+        .foregroundColor(.white)
+        .clipShape(Circle())
+        .scaleEffect(animationAmount)
     }
 }
 
